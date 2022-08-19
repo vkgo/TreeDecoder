@@ -11,21 +11,33 @@ The data will be released after it is prepared:<br>
 ### 1. Prepocess
 
 Preprocessing of training set. (.pkl)
-<br/>
-`python data/gen_pkl.py --dataset_type CROHME --op_mode TRAIN --cptn_path data/train_caption.txt --crop_path data/off_image_train/ --img_pkl_path data/train.pkl`
+
+```shell
+python data/gen_pkl.py --dataset_type CROHME --op_mode TRAIN --cptn_path data/train_caption.txt --crop_path data/off_image_train/ --img_pkl_path data/train.pkl
+```
 
 Preprocessing of test set. (.pkl)
-<br/>
-`python data/gen_pkl.py --dataset_type CROHME --op_mode TEST --cptn_path data/test_caption.txt --crop_path data/off_image_test/ --img_pkl_path data/test.pkl`
+
+```shell
+python data/gen_pkl.py --dataset_type CROHME --op_mode TEST --cptn_path data/test_caption.txt --crop_path data/off_image_test/ --img_pkl_path data/test.pkl
+```
 
 ### 2. Generate ME vocabulary
-`python data/gen_voc.py --dataset_type CROHME --total_cptn_path data/train_caption.txt --dict_path data/dictionary.txt`
+```shell
+python data/gen_voc.py --dataset_type CROHME --total_cptn_path data/train_caption.txt --dict_path data/dictionary.txt
+```
 
 ### 3. Generate GTD files
-`python codes/latex2gtd --dataset_type CROHME`
+
+```shell
+python codes/latex2gtd.py --dataset_type CROHME --tgt_mode TRAIN
+```
 
 ### 4. Generate GTD label & align file (.pkl)
-`python codes/prepare_label.py --dataset_type CROHME`
+
+```shell
+python codes/prepare_label.py --dataset_type CROHME --op_mode TRAIN --gtd_path ./data/GTD/ --label_pkl_path ./data/label.pkl --align_pkl_path ./data/align.pkl
+```
 
 ### 5. Training model
 `python codes/train_wap.py --dataset_type CROHME`

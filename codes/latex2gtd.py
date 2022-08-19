@@ -300,8 +300,8 @@ def parse_arguments(argv):
 
     parser.add_argument("--dataset_type", required=True, choices=['CROHME', '20K', 'MATHFLAT'], help="Dataset type")
     parser.add_argument("--tgt_mode", required=True, choices=['TRAIN', 'TEST'], help="Target mode")
-    parser.add_argument("--latex_root_path", default="../data/CROHME/", help="Root path of latex files")
-    parser.add_argument("--gtd_root_path", default="../data/CROHME/", help="Root path of gtd files")
+    parser.add_argument("--latex_root_path", default="./data/", help="Root path of latex files")
+    parser.add_argument("--gtd_root_path", default="./data/GTD/", help="Root path of gtd files")
 
     args = parser.parse_args(argv)
 

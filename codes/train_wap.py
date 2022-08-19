@@ -6,11 +6,17 @@ import numpy as np
 import random
 import torch
 from torch import optim, nn
+
+sys.path.append(os.getcwd()) # 这一行为下面的codes自建库可以正常导入
+
 from codes.utils import load_dict, prepare_data, gen_sample, weight_init, compute_wer, compute_sacc
 from codes.encoder_decoder import Encoder_Decoder
 from codes.data_iterator import dataIterator
 from datetime import datetime
 from utility.general_utils import folder_exists, get_filenames
+
+
+
 
 def str2bool(v):
     if v == 'True':
@@ -31,7 +37,7 @@ def main(args):
     # load configurations
     # Paths for train, test
     if args.dataset_type == 'CROHME':
-        concat_dataset_path = '../data/CROHME/'
+        concat_dataset_path = './data/'
         img_path, cptn_path = os.path.join(concat_dataset_path, 'image/'), os.path.join(concat_dataset_path, 'caption/')
         dict_path, re_dict_path = os.path.join(concat_dataset_path, 'dictionary.txt'), os.path.join(concat_dataset_path, 're_dictionary.txt')
         train_img_pkl_path, test_img_pkl_path = os.path.join(img_path, 'offline-train.pkl'), os.path.join(img_path, 'offline-test.pkl')
@@ -44,7 +50,7 @@ def main(args):
         train_label_pkl_path, test_label_pkl_path = os.path.join(args.train_path, 'train_caption_label.pkl'), os.path.join(args.test_path, 'test_caption_label.pkl')
         train_align_pkl_path, test_align_pkl_path = os.path.join(args.train_path, 'train_caption_align.pkl'), os.path.join(args.test_path, 'test_caption_align.pkl')
 
-    work_path = '../train/'
+    work_path = './train/'
 
     dictionaries = [dict_path, re_dict_path]
     datasets = [train_img_pkl_path, train_label_pkl_path, train_align_pkl_path]
